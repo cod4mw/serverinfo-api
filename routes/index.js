@@ -22,21 +22,7 @@ router.get('/:address', async (req, res, next) => {
       port: port
     };
     if (data) {
-      serverData.data = {
-        name: data.name,
-        map: data.map,
-        gametype: data.raw.g_gametype,
-        protected: data.password,
-        currentPlayers: data.players.length,
-        maxPlayers: parseInt(data.maxplayers),
-        fsgame: data.raw.fsgame,
-        version: data.raw.shortversion,
-        voice: data.raw.sv_voice,
-        mapStartTime: data.raw.g_mapStartTime,
-        uptime: data.raw.uptime,
-        Admin: data.raw._Admin,
-        location: data.raw._Location
-      }
+      serverData.data = data;
     }
 
 
