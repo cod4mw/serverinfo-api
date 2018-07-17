@@ -15,7 +15,7 @@ router.get('/:address', async (req, res, next) => {
       type: 'cod4',
       host: ip,
       port: port
-    }).catch(() => {});
+    });
 
     let serverData = {
       host: ip,
@@ -29,7 +29,15 @@ router.get('/:address', async (req, res, next) => {
     res.json(serverData);
   }
   catch (e) {
-    next(e);
+    if (e.toString().includes('UDP Watchdog Timeout')) {
+      res.json({
+        error: '1004',
+        message: 'Game Server Offline'
+      });
+    }
+    else {
+      next(e);
+    }
   }
 });
 
